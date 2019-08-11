@@ -44,7 +44,6 @@ function KnapSackDynamic(W, values, weights, main_header, comparison_header, res
 	//If the current new weight + the existing weight is bigger than threshold, then you choose the max by comparing the result from
 	//testing add the next comparing value, or change the next base value
 	if(parseInt(result[result_length].weight) + parseInt(weights[comparison_header]) > parseInt(W) && parseInt(comparison_header) >= 0){
-		//TODO: if 
 		if(main_header > 0 && comparison_header > 0){
 			result.push();
 			var length1 = result_length+1;
