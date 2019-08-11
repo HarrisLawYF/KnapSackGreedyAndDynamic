@@ -3,11 +3,11 @@
 // W = capacity of the sack
 // wt[] = weight of items
 
-//var values = [130, 60, 120];
-//var weights = [10, 20, 30];
-
-var values = [60, 100,120];
+var values = [130, 60, 120];
 var weights = [10, 20, 30];
+
+//var values = [60, 100,120];
+//var weights = [10, 20, 30];
 var W = 50;
 
 
@@ -44,26 +44,21 @@ function KnapSackDynamic(W, values, weights, main_header, comparison_header, res
 	//If the current new weight + the existing weight is bigger than threshold, then you choose the max by comparing the result from
 	//testing add the next comparing value, or change the next base value
 	if(parseInt(result[result_length].weight) + parseInt(weights[comparison_header]) > parseInt(W) && parseInt(comparison_header) >= 0){
-		if(main_header > 0 && comparison_header > 0){
-			result.push();
-			var length1 = result_length+1;
-			result[length1] = {value:values[main_header], weight:weights[main_header]};
-			result.push();
-			var length2 = length1+1;
-			result[length2] = {value:values[main_header-1], weight:weights[main_header-1]};
-			//We can skip some comparison here
-			return Math.max(KnapSackDynamic(W, values, weights, main_header, comparison_header-1, length1),KnapSackDynamic(W, values, weights, main_header-1, comparison_header, length2));
-		} else if (comparison_header > 0){
+		if (comparison_header > 0){
 			result.push();
 			var length = result_length+1;
 			result[length] = {value:values[main_header], weight:weights[main_header]};
 			return KnapSackDynamic(W, values, weights, main_header, comparison_header-1, length);
-		} else if (main_header > 0){
+		} 
+		
+		if (main_header > 0){
 			result.push();
 			var length = result_length+1;
 			result[length] = {value:values[main_header-1], weight:weights[main_header-1]};
 			return KnapSackDynamic(W, values, weights, main_header-1, comparison_header, length);
-		} else{
+		} 
+		
+		if(main_header <=0 && comparison_header <=0){
 			return 0;
 		}
 	} else{
